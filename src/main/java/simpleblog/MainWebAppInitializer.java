@@ -10,7 +10,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
 /**
- * Created by marc on 4-7-15.
+ * This will initialize the Spring MVC web application without the need for a web.xml file
  */
 public class MainWebAppInitializer implements WebApplicationInitializer {
 

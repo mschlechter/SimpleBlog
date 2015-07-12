@@ -3,7 +3,7 @@ package simpleblog;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 /**
- * Created by marc on 12/07/15.
+ * Needed to bootstrap Spring security
  */
 public class SecurityWebAppInitializer extends AbstractSecurityWebApplicationInitializer {
 
