@@ -19,10 +19,4 @@ public class AppConfig {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Bean
-    public ISimpleBlogConfig MainBlogConfig()
-    {
-        return new SimpleBlogConfig();
-    }
-
 }

@@ -1,12 +1,13 @@
 package simpleblog.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import simpleblog.config.ISimpleBlogConfig;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by marc on 11/07/15.
  */
-public class SimpleBlogConfig implements ISimpleBlogConfig {
+@Component
+public class SimpleBlogConfig {
 
     @Value("${simpleblog.title}")
     private String blogTitle;

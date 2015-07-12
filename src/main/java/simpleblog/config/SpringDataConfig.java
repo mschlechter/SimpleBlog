@@ -46,11 +46,4 @@ public class SpringDataConfig {
         return template;
     }
 
-    @Bean
-    public BlogPostDao blogPostDao()
-    {
-        BlogPostDao dao = new BlogPostDao(jdbcTemplate());
-        return dao;
-    }
-
 }

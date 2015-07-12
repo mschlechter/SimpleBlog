@@ -23,9 +23,9 @@
 
 <div class="jumbotron">
   <div class="container">
-    <h1>${blogTitle}</h1>
+    <h1>${blogConfig.blogTitle}</h1>
     <p class="hidden-xs">
-      ${blogSubTitle}
+      ${blogConfig.blogSubTitle}
     </p>
   </div>
 </div>
