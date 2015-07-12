@@ -23,7 +23,7 @@
     <c:otherwise>
 
         <div class="container">
-            Er zijn nog geen berichten geplaatst.
+            This blog is empty.
         </div>
 
 
