@@ -39,7 +39,31 @@ public class BlogPostDao {
 
             }
         }
-
         return blogPostList;
     }
+
+    public BlogPost getBlogPost(int id)
+    {
+
+        Markdown4jProcessor p = new Markdown4jProcessor();
+
+        String sql = "select * from blogpost where id = ?";
+
+        //BlogPost blogPost = (BlogPost)jdbcTemplate.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper<BlogPost>());
+        BlogPost blogPost = (BlogPost)jdbcTemplate.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper(BlogPost.class));
+
+        try {
+            String html = p.process(blogPost.getContentmd());
+            html = html.replaceAll("<pre>", "<pre class=\"prettyprint\">");
+
+            blogPost.setContenthtml(html);
+        }
+        catch (IOException e)
+        {
+
+        }
+
+        return blogPost;
+    }
+
 }
