@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>${blogTitle}</title>
+  <title>${blogConfig.blogTitle} / ${blogPost.title}</title>
 
   <script src="<c:url value="/vendor/jquery/jquery-1.11.3.min.js" />"></script>
 
