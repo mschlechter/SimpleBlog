@@ -29,7 +29,10 @@
     </p>
   </div>
 </div>
-
+<ol class="breadcrumb">
+  <li><a href="../">Home</a></li>
+  <li class="active">${blogPost.title}</li>
+</ol>
 
 <div class="container">
   <div class="page-header">

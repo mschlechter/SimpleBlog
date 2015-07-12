@@ -19,7 +19,7 @@ public class BlogPost {
 
     public String getFormattedDate()
     {
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         return format.format(created);
     }
 
