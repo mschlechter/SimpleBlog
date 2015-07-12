@@ -36,7 +36,7 @@
 
 <div class="container">
   <div class="page-header">
-    <h2>${blogPost.title} <small class="hidden-xs">geplaatst op ${blogPost.formattedDate}</small></h2>
+    <h2>${blogPost.title} <small class="hidden-xs">${blogPost.formattedDate}</small></h2>
 
   </div>
 
