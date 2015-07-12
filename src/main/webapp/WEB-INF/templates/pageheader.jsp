@@ -30,11 +30,22 @@
       <li><a href="<c:url value="/about" />">About</a></li>
     </ul>
 
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="<c:url value="/signin" />">Sign in</a></li>
-    </ul>
+    <c:choose>
+      <c:when test="${pageContext.request.userPrincipal.name != null}">
 
-    <!-- <p class="navbar-text navbar-right">Signed in as Mark Otto</p> -->
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="<c:url value="/logout" />">Sign out (${pageContext.request.userPrincipal.name})</a></li>
+        </ul>
+
+      </c:when>
+      <c:otherwise>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="<c:url value="/login" />">Sign in</a></li>
+        </ul>
+
+      </c:otherwise>
+    </c:choose>
 
   </div>
 </nav>
