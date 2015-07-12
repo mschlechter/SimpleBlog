@@ -33,9 +33,15 @@
     <c:choose>
       <c:when test="${pageContext.request.userPrincipal.name != null}">
 
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="<c:url value="/logout" />">Sign out (${pageContext.request.userPrincipal.name})</a></li>
-        </ul>
+        <form id="logoutForm" action="<c:url value="/logout" />" method="post">
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="javascript:;" onclick="document.getElementById('logoutForm').submit();">Sign out (${pageContext.request.userPrincipal.name})</a></li>
+          </ul>
+
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+        </form>
 
       </c:when>
       <c:otherwise>
