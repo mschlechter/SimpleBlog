@@ -28,9 +28,6 @@ public class LoginController {
             mav.addObject("error", "Sorry, incorrect credentials!");
         }
 
-/*        if (logout != null) {
-            model.addObject("msg", "You've been logged out successfully.");
-        }*/
         mav.setViewName("login");
 
         return mav;
