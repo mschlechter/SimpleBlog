@@ -41,7 +41,7 @@
                 </div>
 
                 <p>
-                        ${blogPost.contenthtml}
+                        ${blogPost.summary}
                 </p>
             </div>
         </c:forEach>

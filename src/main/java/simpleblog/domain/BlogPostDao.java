@@ -26,12 +26,13 @@ public class BlogPostDao {
     {
         String sql = "select * from blogpost order by created desc limit 5";
 
-        List<BlogPost> blogPostList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(BlogPost.class));
+        List<BlogPost> blogPostList = jdbcTemplate.query(sql,
+                new BeanPropertyRowMapper(BlogPost.class));
 
         for (BlogPost blogPost : blogPostList)
         {
-            String html = mdProcessor.getHtml(blogPost.getContentmd());
-            blogPost.setContenthtml(html);
+            blogPost.setContentHtml(mdProcessor.getHtml(blogPost.getContent()));
+            blogPost.setSummaryHtml(mdProcessor.getHtml(blogPost.getSummary()));
         }
         return blogPostList;
     }
@@ -40,10 +41,12 @@ public class BlogPostDao {
     {
         String sql = "select * from blogpost where id = ?";
 
-        BlogPost blogPost = (BlogPost)jdbcTemplate.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper(BlogPost.class));
+        BlogPost blogPost = (BlogPost)jdbcTemplate.queryForObject(sql,
+                new Object[] { id },
+                new BeanPropertyRowMapper(BlogPost.class));
 
-        String html = mdProcessor.getHtml(blogPost.getContentmd());
-        blogPost.setContenthtml(html);
+        blogPost.setContentHtml(mdProcessor.getHtml(blogPost.getContent()));
+        blogPost.setSummaryHtml(mdProcessor.getHtml(blogPost.getSummary()));
 
         return blogPost;
     }

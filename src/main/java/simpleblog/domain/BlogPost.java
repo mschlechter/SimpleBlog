@@ -11,8 +11,11 @@ public class BlogPost {
     private int id;
     private String title;
     private Date created;
-    private String contentmd;
-    private String contenthtml;
+    private String content;
+    private String summary;
+
+    private String contentHtml;
+    private String summaryHtml;
 
     public String getFormattedDate()
     {
@@ -44,19 +47,36 @@ public class BlogPost {
         this.created = created;
     }
 
-    public String getContentmd() {
-        return contentmd;
+
+    public String getContent() {
+        return content;
     }
 
-    public void setContentmd(String contentmd) {
-        this.contentmd = contentmd;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public String getContenthtml() {
-        return contenthtml;
+    public String getSummary() {
+        return summary;
     }
 
-    public void setContenthtml(String contenthtml) {
-        this.contenthtml = contenthtml;
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getContentHtml() {
+        return contentHtml;
+    }
+
+    public void setContentHtml(String contentHtml) {
+        this.contentHtml = contentHtml;
+    }
+
+    public String getSummaryHtml() {
+        return summaryHtml;
+    }
+
+    public void setSummaryHtml(String summaryHtml) {
+        this.summaryHtml = summaryHtml;
     }
 }

@@ -38,7 +38,7 @@
   </div>
 
   <p>
-    ${blogPost.contenthtml}
+    ${blogPost.contentHtml}
   </p>
 </div>
 
