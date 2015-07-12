@@ -21,18 +21,7 @@
 </head>
 <body onload="prettyPrint()">
 
-<div class="jumbotron">
-  <div class="container">
-    <h1>${blogConfig.blogTitle}</h1>
-    <p class="hidden-xs">
-      ${blogConfig.blogSubTitle}
-    </p>
-  </div>
-</div>
-<ol class="breadcrumb">
-  <li><a href="../">Home</a></li>
-  <li class="active">${blogPost.title}</li>
-</ol>
+<%@include file="pageheader.jsp" %>
 
 <div class="container">
   <div class="page-header">

@@ -22,17 +22,7 @@
 </head>
 <body onload="prettyPrint()">
 
-<div class="jumbotron">
-  <div class="container">
-    <h1>${blogConfig.blogTitle}</h1>
-    <p class="hidden-xs">
-      ${blogConfig.blogSubTitle}
-    </p>
-  </div>
-</div>
-<ol class="breadcrumb">
-    <li><a href="#">Home</a></li>
-</ol>
+<%@include file="pageheader.jsp" %>
 
 <c:choose>
     <c:when test="${not empty blogPosts}">
