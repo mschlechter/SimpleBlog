@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.4
 -- Dumped by pg_dump version 9.3.4
--- Started on 2015-07-11 15:48:16 CEST
+-- Started on 2015-07-12 09:03:44 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -84,8 +84,8 @@ CREATE TABLE blogpost (
     id integer NOT NULL,
     title character varying(255),
     created date,
-    contentmd text,
-    contenthtml text
+    content text,
+    summary text
 );
 
 
@@ -97,8 +97,8 @@ ALTER TABLE public.blogpost OWNER TO postgres;
 -- Data for Name: blogpost; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO blogpost VALUES (2, 'Dit is nog een test', '2015-07-11', 'En hier komt ook een verhaaltje', NULL);
-INSERT INTO blogpost VALUES (1, 'Dit is een test', '2015-07-11', 'Een verhaal-----------Dit is de tijd om een leuk verhaal te schrijven.En dit is nog een paragraaf.Hier komt een puntenlijstje:1. Pizza2. Patat3. ChipsWat volgt er nu?----------------Nog wat meer geblaat.En C# code:``` cspublic class Person{	public int ID { get; set; }	public string Name { get; set; }		public Person()	{		this.ID = 1;		this.Name = "Pietje";	}}```', NULL);
+INSERT INTO blogpost VALUES (1, 'Dit is een test', '2015-07-11', 'Een verhaal-----------Dit is de tijd om een leuk verhaal te schrijven.En dit is nog een paragraaf.Hier komt een puntenlijstje:1. Pizza2. Patat3. ChipsWat volgt er nu?----------------Nog wat meer geblaat.En C# code:``` cspublic class Person{	public int ID { get; set; }	public string Name { get; set; }		public Person()	{		this.ID = 1;		this.Name = "Pietje";	}}```', 'Samenvatting 1');
+INSERT INTO blogpost VALUES (2, 'Dit is nog een test', '2015-07-11', 'En hier komt ook een verhaaltje', 'Samenvatting 2');
 
 
 --
@@ -122,7 +122,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2015-07-11 15:48:17 CEST
+-- Completed on 2015-07-12 09:03:44 CEST
 
 --
 -- PostgreSQL database dump complete
