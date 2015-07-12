@@ -1,4 +1,4 @@
-package simpleblog;
+package simpleblog.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
