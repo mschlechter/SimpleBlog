@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import simpleblog.config.SimpleBlogConfig;
-import simpleblog.domain.BlogPost;
-
-import java.util.List;
 
 /**
  * Created by marc on 12/07/15.
