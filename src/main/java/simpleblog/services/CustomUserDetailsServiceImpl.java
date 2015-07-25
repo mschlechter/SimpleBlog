@@ -45,7 +45,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService
                     credentialsNonExpired,
                     accountNonLocked,
                     getAuthorities(blogUser.getRole()),
-                    blogUser.getFriendlyname()
+                    blogUser.getFriendlyName()
             );
 
         }

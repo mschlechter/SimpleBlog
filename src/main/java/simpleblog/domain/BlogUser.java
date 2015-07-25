@@ -8,15 +8,13 @@ public class BlogUser
     private int id;
     private String username;
     private String password;
-    private String friendlyname;
-    private boolean isadmin;
+    private String friendlyName;
+    private boolean isAdmin;
 
     public int getRole()
     {
-        return isadmin ? 2 : 1;
+        return isAdmin ? 2 : 1;
     }
-
-
 
     public int getId() {
         return id;
@@ -42,19 +40,19 @@ public class BlogUser
         this.password = password;
     }
 
-    public String getFriendlyname() {
-        return friendlyname;
+    public String getFriendlyName() {
+        return friendlyName;
     }
 
-    public void setFriendlyname(String friendlyname) {
-        this.friendlyname = friendlyname;
+    public void setFriendlyName(String friendlyName) {
+        this.friendlyName = friendlyName;
     }
 
-    public boolean isadmin() {
-        return isadmin;
+    public boolean isAdmin() {
+        return isAdmin;
     }
 
-    public void setIsadmin(boolean isadmin) {
-        this.isadmin = isadmin;
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }
