@@ -9,4 +9,10 @@
   </p>
 </div>
 
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+
+  edit button here
+
+</sec:authorize>
+
 <%@include file="pagefooter.jsp" %>
