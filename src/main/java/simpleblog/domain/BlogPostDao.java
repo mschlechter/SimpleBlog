@@ -1,13 +1,11 @@
 package simpleblog.domain;
 
-import org.markdown4j.Markdown4jProcessor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import simpleblog.services.MarkdownProcessor;
 
-import java.io.IOException;
 import java.util.List;
 
 /**

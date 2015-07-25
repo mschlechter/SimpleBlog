@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.4
 -- Dumped by pg_dump version 9.3.4
--- Started on 2015-07-25 12:38:32 CEST
+-- Started on 2015-07-25 12:57:28 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -93,10 +93,10 @@ ALTER TABLE public.blogpost OWNER TO postgres;
 
 --
 -- TOC entry 171 (class 1259 OID 16472)
--- Name: user; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: bloguser; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE "user" (
+CREATE TABLE bloguser (
     id integer NOT NULL,
     username character varying(64),
     password character varying(128),
@@ -105,7 +105,7 @@ CREATE TABLE "user" (
 );
 
 
-ALTER TABLE public."user" OWNER TO postgres;
+ALTER TABLE public.bloguser OWNER TO postgres;
 
 --
 -- TOC entry 2203 (class 0 OID 16457)
@@ -120,11 +120,11 @@ INSERT INTO blogpost VALUES (1, 'Dit is een test', '2015-07-11 14:45:00', 'Een v
 --
 -- TOC entry 2204 (class 0 OID 16472)
 -- Dependencies: 171
--- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: bloguser; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "user" VALUES (1, 'marc', '1234', 'Marc', B'1');
-INSERT INTO "user" VALUES (2, 'pietje', '1234', 'Pietje', B'0');
+INSERT INTO bloguser VALUES (1, 'marc', '1234', 'Marc', B'1');
+INSERT INTO bloguser VALUES (2, 'pietje', '1234', 'Pietje', B'0');
 
 
 --
@@ -138,11 +138,11 @@ ALTER TABLE ONLY blogpost
 
 --
 -- TOC entry 2095 (class 2606 OID 16476)
--- Name: pk_user; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: pk_bloguser; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY "user"
-    ADD CONSTRAINT pk_user PRIMARY KEY (id);
+ALTER TABLE ONLY bloguser
+    ADD CONSTRAINT pk_bloguser PRIMARY KEY (id);
 
 
 --
@@ -157,7 +157,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2015-07-25 12:38:33 CEST
+-- Completed on 2015-07-25 12:57:28 CEST
 
 --
 -- PostgreSQL database dump complete
