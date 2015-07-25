@@ -49,4 +49,20 @@ public class BlogPostDao {
         return blogPost;
     }
 
+    public void saveBlogPost(BlogPost blogPost)
+    {
+        if (blogPost.isNew())
+        {
+
+        }
+        else
+        {
+            String sql = "update blogpost set title = ?, summary = ?, content = ? where id = ?";
+            jdbcTemplate.update(sql,
+                    new Object[] {
+                            blogPost.getTitle(), blogPost.getSummary(), blogPost.getContent(), blogPost.getId()
+                    });
+        }
+    }
+
 }
