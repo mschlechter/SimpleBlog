@@ -7,12 +7,17 @@
   <p>
     ${blogPost.contentHtml}
   </p>
+
+  <sec:authorize access="hasRole('ROLE_ADMIN')">
+
+  <p>
+    <a href="edit/${blogPost.id}">
+      <button type="button" class="btn btn-default">Edit content</button>
+    </a>
+  </p>
+
+  </sec:authorize>
+
 </div>
-
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-
-  edit button here
-
-</sec:authorize>
 
 <%@include file="pagefooter.jsp" %>

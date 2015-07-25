@@ -36,6 +36,17 @@ public class BlogPostController
         return mav;
     }
 
+    @RequestMapping(value="/post/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView getBlogPostByIdEdit(@PathVariable("id") int id)
+    {
+        BlogPost blogPost = blogPostDao.getBlogPost(id);
+
+        ModelAndView mav = new ModelAndView("blogpostedit");
+        mav.addObject("blogConfig", blogConfig);
+        mav.addObject("blogPost", blogPost);
+
+        return mav;
+    }
 
 
 }
