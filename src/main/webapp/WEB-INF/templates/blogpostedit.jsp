@@ -5,25 +5,32 @@
     <h2>Edit: ${blogPost.title} <small class="hidden-xs">${blogPost.formattedDate}</small></h2>
   </div>
 
-  <form action="<c:url value='/post/edit/' />${blogPost.id}" method="post">
+  <spring:url value="/post/save" var="saveActionUrl" />
+
+  <form:form modelAttribute="blogPost" action="${saveActionUrl}" method="post">
+
+    <form:input path="id" type="hidden" id="id" />
 
     <div class="form-group">
       <label for="title">Title:</label>
-      <input type="text" class="form-control" id="title" placeholder="Title" value="${blogPost.title}">
+      <form:input path="title" type="text" class="form-control" id="title" placeholder="Title" />
+    </div>
+
+    <div class="form-group">
+      <label for="summary">Summary:</label>
+      <form:textarea path="summary" type="text" class="form-control" id="summary" placeholder="Summary" rows="5" />
     </div>
 
     <div class="form-group">
       <label for="content">Content:</label>
-      <textarea type="text" class="form-control" id="content" placeholder="Title" rows="20">
-        ${blogPost.content}
-      </textarea>
+      <form:textarea path="content" type="text" class="form-control" id="content" placeholder="Title" rows="20" />
     </div>
 
     <button type="submit" class="btn btn-default">Save</button>
 
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
-  </form>
+  </form:form>
 
 </div>
 

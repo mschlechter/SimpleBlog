@@ -2,6 +2,7 @@ package simpleblog.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,9 +49,14 @@ public class BlogPostController
         return mav;
     }
 
-    @RequestMapping(value="/post/edit/{id}", method = RequestMethod.POST)
-    public ModelAndView saveBlogPostByIdEdit(@PathVariable("id") int id)
+    @RequestMapping(value="/post/save", method = RequestMethod.POST)
+    public ModelAndView saveBlogPost(@ModelAttribute("blogPost") BlogPost blogPost)
     {
+        blogPostDao.saveBlogPost(blogPost);
+
+
+
+
         /*
         BlogPost blogPost = blogPostDao.getBlogPost(id);
 

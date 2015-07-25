@@ -23,6 +23,11 @@ public class BlogPost {
         return format.format(created);
     }
 
+    public boolean isNew()
+    {
+        return id <= 0;
+    }
+
     public int getId() {
         return id;
     }
