@@ -36,7 +36,7 @@
         <form id="logoutForm" action="<c:url value="/logout" />" method="post">
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="javascript:;" onclick="document.getElementById('logoutForm').submit();">Sign out (${pageContext.request.userPrincipal.name})</a></li>
+            <li><a href="javascript:;" onclick="document.getElementById('logoutForm').submit();">Sign out (${pageContext.request.userPrincipal.principal.friendlyName})</a></li>
           </ul>
 
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

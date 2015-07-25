@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import simpleblog.services.UserDetailsServiceImpl;
+import simpleblog.services.CustomUserDetailsServiceImpl;
 
 /**
  * Created by marc on 12/07/15.
@@ -15,22 +15,20 @@ import simpleblog.services.UserDetailsServiceImpl;
  *
  * http://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#what-is-acegi-security
  *
+ * http://stackoverflow.com/questions/8535083/get-more-information-from-user-spring-security
+ *
  */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    CustomUserDetailsServiceImpl userDetailsService;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
-
         auth.userDetailsService(userDetailsService);
-
     }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

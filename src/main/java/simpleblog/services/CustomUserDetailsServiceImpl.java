@@ -21,7 +21,7 @@ import java.util.List;
  * http://fruzenshtein.com/spring-mvc-security-mysql-hibernate/
  */
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService
+public class CustomUserDetailsServiceImpl implements UserDetailsService
 {
     @Autowired
     BlogUserDao userDao;
@@ -32,23 +32,21 @@ public class UserDetailsServiceImpl implements UserDetailsService
 
         if (blogUser != null)
         {
-
-
             boolean enabled = true;
             boolean accountNonExpired = true;
             boolean credentialsNonExpired = true;
             boolean accountNonLocked = true;
 
-            return new User(
+            return new CustomUserDetails(
                     blogUser.getUsername(),
                     blogUser.getPassword(),
                     enabled,
                     accountNonExpired,
                     credentialsNonExpired,
                     accountNonLocked,
-                    getAuthorities(blogUser.getRole())
+                    getAuthorities(blogUser.getRole()),
+                    blogUser.getFriendlyname()
             );
-
 
         }
 
