@@ -19,7 +19,7 @@
                     <h2>${blogPost.title} <small class="hidden-xs">${blogPost.formattedDate}</small></h2>
                 </div>
                 <p>
-                    ${blogPost.summary}
+                    ${blogPost.summaryHtml}
                 </p>
                 <p>
                     <a href="post/${blogPost.id}">
