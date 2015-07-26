@@ -31,6 +31,7 @@
     <ul class="nav navbar-nav">
       <li><a href="<c:url value="/" />">Home</a></li>
       <li><a href="<c:url value="/about" />">About</a></li>
+      <li><a href="<c:url value="/archive" />">Archive</a></li>
     </ul>
 
     <c:choose>

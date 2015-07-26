@@ -50,6 +50,21 @@ public class BlogPostDao {
         return blogPost;
     }
 
+    public List<BlogPost> getBlogPostSummary()
+    {
+        String sql = "select id, title, summary, created from blogpost order by created desc";
+
+        List<BlogPost> blogPostList = jdbcTemplate.query(sql,
+                new BeanPropertyRowMapper(BlogPost.class));
+
+        for (BlogPost blogPost : blogPostList)
+        {
+            blogPost.setSummaryHtml(mdProcessor.getHtml(blogPost.getSummary()));
+        }
+
+        return blogPostList;
+    }
+
     public void saveBlogPost(BlogPost blogPost)
     {
         if (blogPost.isNew())
