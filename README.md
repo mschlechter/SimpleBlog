@@ -11,11 +11,11 @@ Working:
 1. It shows blog messages from the database.
 2. A user can navigate between blog posts.
 3. Syntax coloring of code blocks.
+4. You can log in and post / edit new items.
 
 Todo's:
 
-1. User authentication and registration.
-2. Blog post authoring.
-3. Archive view with search functionality.
-4. Much more :-)
+1. User registration.
+2. Archive view with search functionality.
+3. Much more :-)
 
