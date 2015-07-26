@@ -1,5 +1,15 @@
 <%@include file="pageheader.jsp" %>
 
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+
+    <div class="container">
+        <a href="post/edit/-1">
+            <button type="button" class="btn btn-default">New post</button>
+        </a>
+    </div>
+
+</sec:authorize>
+
 <c:choose>
     <c:when test="${not empty blogPosts}">
 

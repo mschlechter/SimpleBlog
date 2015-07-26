@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import simpleblog.services.MarkdownProcessor;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -53,14 +54,20 @@ public class BlogPostDao {
     {
         if (blogPost.isNew())
         {
+            String sql = "insert into blogpost(id, title, created, content, summary) values (nextval('seq_blogpost'), ?, ?, ?, ?)";
+
+            jdbcTemplate.update(sql,
+                    new Object[]{
+                            blogPost.getTitle(), new Date(), blogPost.getContent(), blogPost.getSummary()
+                    });
 
         }
         else
         {
-            String sql = "update blogpost set title = ?, summary = ?, content = ? where id = ?";
+            String sql = "update blogpost set title = ?, created = ?, summary = ?, content = ? where id = ?";
             jdbcTemplate.update(sql,
                     new Object[] {
-                            blogPost.getTitle(), blogPost.getSummary(), blogPost.getContent(), blogPost.getId()
+                            blogPost.getTitle(), new Date(), blogPost.getSummary(), blogPost.getContent(), blogPost.getId()
                     });
         }
     }

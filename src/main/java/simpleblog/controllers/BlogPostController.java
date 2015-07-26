@@ -11,6 +11,7 @@ import simpleblog.config.SimpleBlogConfig;
 import simpleblog.domain.BlogPost;
 import simpleblog.domain.BlogPostDao;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,7 +41,13 @@ public class BlogPostController
     @RequestMapping(value="/post/edit/{id}", method = RequestMethod.GET)
     public ModelAndView getBlogPostByIdEdit(@PathVariable("id") int id)
     {
-        BlogPost blogPost = blogPostDao.getBlogPost(id);
+        BlogPost blogPost;
+
+        if (id > 0) {
+            blogPost = blogPostDao.getBlogPost(id);
+        } else {
+            blogPost = new BlogPost();
+        }
 
         ModelAndView mav = new ModelAndView("blogpostedit");
         mav.addObject("blogConfig", blogConfig);
@@ -54,21 +61,7 @@ public class BlogPostController
     {
         blogPostDao.saveBlogPost(blogPost);
 
-
-
-
-        /*
-        BlogPost blogPost = blogPostDao.getBlogPost(id);
-
-        ModelAndView mav = new ModelAndView("blogpostedit");
-        mav.addObject("blogConfig", blogConfig);
-        mav.addObject("blogPost", blogPost);
-
-        return mav;*/
-
-
         return new ModelAndView("redirect:/");
-
     }
 
 }
