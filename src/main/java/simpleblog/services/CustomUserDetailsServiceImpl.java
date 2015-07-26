@@ -64,8 +64,8 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService
 
         List<String> roles = new ArrayList<String>();
 
-        if (role.intValue() >= 1) roles.add("ROLE_USER");
-        if (role.intValue() >= 2) roles.add("ROLE_ADMIN");
+        if (role >= 1) roles.add("ROLE_USER");
+        if (role >= 2) roles.add("ROLE_ADMIN");
 
         return roles;
     }
