@@ -6,6 +6,8 @@ Supports markdown syntax and pretty coloring of code blocks.
 
 This project is still in an early stage of development.
 
+![screenshot image](screenshot.jpg "Screenshot")
+
 Working:
 
 1. It shows blog messages from the database.
