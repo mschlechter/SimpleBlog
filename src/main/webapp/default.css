@@ -1,6 +1,11 @@
 .jumbotron {
     background-color: #200060;
+    background-image: url(background.jpg);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
     color: #f0f0f0;
+    text-shadow: 1px 1px #202020;
 }
 
 .navbar {
