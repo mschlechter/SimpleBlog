@@ -1,5 +1,6 @@
 package simpleblog.config;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +28,7 @@ public class SpringDataConfig {
     {
         try
         {
-            DriverManagerDataSource ds = new DriverManagerDataSource();
+            BasicDataSource ds = new BasicDataSource();
             ds.setDriverClassName(env.getRequiredProperty("jdbc.driverClassName"));
             ds.setUrl(env.getRequiredProperty("jdbc.url"));
             ds.setUsername(env.getRequiredProperty("jdbc.username"));
