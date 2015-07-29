@@ -1,10 +1,15 @@
 package simpleblog.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * Created by marc on 25/07/15.
  */
+@Entity
 public class BlogUser
 {
+    @Id
     private int id;
     private String username;
     private String password;

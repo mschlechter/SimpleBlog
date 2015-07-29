@@ -1,13 +1,17 @@
 package simpleblog.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  * Created by marc on 11/07/15.
  */
+@Entity
 public class BlogPost {
 
+    @Id
     private int id;
     private String title;
     private Date created;
