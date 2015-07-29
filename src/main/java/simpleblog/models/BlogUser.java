@@ -1,4 +1,4 @@
-package simpleblog.domain;
+package simpleblog.models;
 
 /**
  * Created by marc on 25/07/15.

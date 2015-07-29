@@ -1,4 +1,4 @@
-package simpleblog.domain;
+package simpleblog.models;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

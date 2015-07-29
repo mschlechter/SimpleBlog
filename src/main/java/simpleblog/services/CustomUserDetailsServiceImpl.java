@@ -3,13 +3,12 @@ package simpleblog.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import simpleblog.domain.BlogUser;
-import simpleblog.domain.BlogUserDao;
+import simpleblog.models.BlogUser;
+import simpleblog.models.BlogUserDao;
 
 import java.util.ArrayList;
 import java.util.Collection;

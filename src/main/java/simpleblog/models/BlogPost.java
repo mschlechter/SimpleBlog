@@ -1,4 +1,4 @@
-package simpleblog.domain;
+package simpleblog.models;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +13,7 @@ public class BlogPost {
     private Date created;
     private String content;
     private String summary;
+    private int author;
 
     private String contentHtml;
     private String summaryHtml;
@@ -85,5 +86,13 @@ public class BlogPost {
 
     public void setSummaryHtml(String summaryHtml) {
         this.summaryHtml = summaryHtml;
+    }
+
+    public int getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(int author) {
+        this.author = author;
     }
 }

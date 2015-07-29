@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import simpleblog.config.SimpleBlogConfig;
-import simpleblog.domain.BlogPost;
-import simpleblog.domain.BlogPostDao;
+import simpleblog.models.BlogPost;
+import simpleblog.models.BlogPostDao;
 
 import java.util.List;
 

@@ -36,9 +36,10 @@ SET default_with_oids = false;
 CREATE TABLE blogpost (
     id integer NOT NULL,
     title character varying(255),
-    created date,
+    created date NOT NULL,
     content text,
-    summary text
+    summary text,
+    author integer NOT NULL
 );
 
 
@@ -77,12 +78,12 @@ ALTER TABLE seq_blogpost OWNER TO postgres;
 -- Data for Name: blogpost; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY blogpost (id, title, created, content, summary) FROM stdin;
-5	Installing Ubuntu on an Intel NUC 2820	2015-07-26	Installing Ubuntu on an Intel NUC 2820 should be a breeze, as long as you stay away from the BIOS.\r\n\r\nReally. A simple tweak like setting the OS choice to Windows 7 instead of Windows 8 will give you a lot of headaches. The machine won't shut down properly et cetera.	Installing Ubuntu on an Intel NUC 2820 should be a breeze, as long as you stay away from the BIOS.\r\n\r\nReally. A simple tweak like setting the OS choice to Windows 7 instead of Windows 8 will give you a lot of headaches. The machine won't shut down properly et cetera.
-3	Java 8 lamba's are fun	2015-07-26	Compared to C# and Scala, Java is a very verbose language.\r\n\r\nWith Java 8 lambda's we can finally trim down our code a bit.	Compared to C# and Scala, Java is a very verbose language.\r\n\r\nWith Java 8 lambda's we can finally trim down our code a bit.
-4	What I like about Google Go	2015-07-26	Google Go is a new programming language that sits somewhere between C and C++, but with strong type inference and good support for concurrent programming.	Google Go is a new programming language that sits somewhere between C and C++, but with strong type inference and good support for concurrent programming.
-2	Getting started with ASP.NET 5	2015-07-26	ASP.NET 5 is the new portable web framework from Microsoft which actually runs on OS X and Linux.	ASP.NET 5 is the new portable web framework from Microsoft which actually runs on OS X and Linux.
-1	Dependency injection with ASP.NET 5	2015-07-26	With ASP.NET 5 finally comes integrated dependency injection. This is something other frameworks like Spring MVC had for years, but better late than never I guess.	With ASP.NET 5 finally comes integrated dependency injection. This is something other frameworks like Spring MVC had for years, but better late than never I guess.
+COPY blogpost (id, title, created, content, summary, author) FROM stdin;
+1	Dependency injection with ASP.NET 5	2015-07-26	With ASP.NET 5 finally comes integrated dependency injection. This is something other frameworks like Spring MVC had for years, but better late than never I guess.	With ASP.NET 5 finally comes integrated dependency injection. This is something other frameworks like Spring MVC had for years, but better late than never I guess.	1
+2	Getting started with ASP.NET 5	2015-07-26	ASP.NET 5 is the new portable web framework from Microsoft which actually runs on OS X and Linux.	ASP.NET 5 is the new portable web framework from Microsoft which actually runs on OS X and Linux.	1
+3	Java 8 lamba's are fun	2015-07-26	Compared to C# and Scala, Java is a very verbose language.\r\n\r\nWith Java 8 lambda's we can finally trim down our code a bit.	Compared to C# and Scala, Java is a very verbose language.\r\n\r\nWith Java 8 lambda's we can finally trim down our code a bit.	1
+4	What I like about Google Go	2015-07-26	Google Go is a new programming language that sits somewhere between C and C++, but with strong type inference and good support for concurrent programming.	Google Go is a new programming language that sits somewhere between C and C++, but with strong type inference and good support for concurrent programming.	1
+5	Installing Ubuntu on an Intel NUC 2820	2015-07-26	Installing Ubuntu on an Intel NUC 2820 should be a breeze, as long as you stay away from the BIOS.\r\n\r\nReally. A simple tweak like setting the OS choice to Windows 7 instead of Windows 8 will give you a lot of headaches. The machine won't shut down properly et cetera.	Installing Ubuntu on an Intel NUC 2820 should be a breeze, as long as you stay away from the BIOS.\r\n\r\nReally. A simple tweak like setting the OS choice to Windows 7 instead of Windows 8 will give you a lot of headaches. The machine won't shut down properly et cetera.	1
 \.
 
 
