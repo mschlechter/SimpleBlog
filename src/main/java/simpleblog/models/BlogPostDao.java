@@ -53,16 +53,24 @@ public class BlogPostDao {
 
     public BlogPost getBlogPost(int id)
     {
-        String sql = "select * from blogpost where id = ?";
+        String hql = "from BlogPost p where p.id = :id";
 
-        BlogPost blogPost = (BlogPost)jdbcTemplate.queryForObject(sql,
-                new Object[] { id },
-                new BeanPropertyRowMapper(BlogPost.class));
+        Session session = null;
 
-        blogPost.setContentHtml(mdProcessor.getHtml(blogPost.getContent()));
-        blogPost.setSummaryHtml(mdProcessor.getHtml(blogPost.getSummary()));
+        try
+        {
+            session = sessionFactory.openSession();
 
-        return blogPost;
+            BlogPost blogPost = (BlogPost) session.createQuery(hql).setInteger("id", id).uniqueResult();
+
+            blogPost.setContentHtml(mdProcessor.getHtml(blogPost.getContent()));
+            blogPost.setSummaryHtml(mdProcessor.getHtml(blogPost.getSummary()));
+
+            return blogPost;
+        }
+        finally {
+            if (session != null) session.close();
+        }
     }
 
     public List<BlogPost> getBlogPostSummary()

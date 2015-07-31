@@ -2,8 +2,11 @@
 
 <div class="container">
   <div class="page-header">
-    <h2>${blogPost.title} <small class="hidden-xs">${blogPost.formattedDate}</small></h2>
+    <h2>${blogPost.title}</h2>
   </div>
+  <p>
+    Posted by ${blogPost.author.friendlyName} on ${blogPost.formattedDate}
+  </p>
   <p>
     ${blogPost.contentHtml}
   </p>
