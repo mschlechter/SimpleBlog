@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo -u postgres psql < CreateDatabase.sql
+sudo -u postgres psql -d SimpleBlog < CreateDatabase.sql

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo -u postgres pg_dump SimpleBlog > CreateDatabase.sql
+sudo -u postgres pg_dump -c SimpleBlog > CreateDatabase.sql

@@ -9,6 +9,31 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
+SET search_path = public, pg_catalog;
+
+ALTER TABLE ONLY public.bloguser DROP CONSTRAINT pk_bloguser;
+ALTER TABLE ONLY public.blogpost DROP CONSTRAINT pk_blogpost_id;
+DROP SEQUENCE public.seq_blogpost;
+DROP TABLE public.bloguser;
+DROP TABLE public.blogpost;
+DROP EXTENSION plpgsql;
+DROP SCHEMA public;
+--
+-- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA public;
+
+
+ALTER SCHEMA public OWNER TO postgres;
+
+--
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
@@ -43,7 +68,7 @@ CREATE TABLE blogpost (
 );
 
 
-ALTER TABLE blogpost OWNER TO postgres;
+ALTER TABLE public.blogpost OWNER TO postgres;
 
 --
 -- Name: bloguser; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -58,7 +83,7 @@ CREATE TABLE bloguser (
 );
 
 
-ALTER TABLE bloguser OWNER TO postgres;
+ALTER TABLE public.bloguser OWNER TO postgres;
 
 --
 -- Name: seq_blogpost; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -72,7 +97,7 @@ CREATE SEQUENCE seq_blogpost
     CACHE 1;
 
 
-ALTER TABLE seq_blogpost OWNER TO postgres;
+ALTER TABLE public.seq_blogpost OWNER TO postgres;
 
 --
 -- Data for Name: blogpost; Type: TABLE DATA; Schema: public; Owner: postgres
