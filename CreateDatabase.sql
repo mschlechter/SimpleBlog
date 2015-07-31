@@ -11,6 +11,7 @@ SET client_min_messages = warning;
 
 SET search_path = public, pg_catalog;
 
+ALTER TABLE ONLY public.blogpost DROP CONSTRAINT fk_blogpost_author;
 ALTER TABLE ONLY public.bloguser DROP CONSTRAINT pk_bloguser;
 ALTER TABLE ONLY public.blogpost DROP CONSTRAINT pk_blogpost_id;
 DROP SEQUENCE public.seq_blogpost;
@@ -64,7 +65,7 @@ CREATE TABLE blogpost (
     created date NOT NULL,
     content text,
     summary text,
-    author integer NOT NULL
+    author_id integer NOT NULL
 );
 
 
@@ -103,7 +104,7 @@ ALTER TABLE public.seq_blogpost OWNER TO postgres;
 -- Data for Name: blogpost; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY blogpost (id, title, created, content, summary, author) FROM stdin;
+COPY blogpost (id, title, created, content, summary, author_id) FROM stdin;
 1	Dependency injection with ASP.NET 5	2015-07-26	With ASP.NET 5 finally comes integrated dependency injection. This is something other frameworks like Spring MVC had for years, but better late than never I guess.	With ASP.NET 5 finally comes integrated dependency injection. This is something other frameworks like Spring MVC had for years, but better late than never I guess.	1
 2	Getting started with ASP.NET 5	2015-07-26	ASP.NET 5 is the new portable web framework from Microsoft which actually runs on OS X and Linux.	ASP.NET 5 is the new portable web framework from Microsoft which actually runs on OS X and Linux.	1
 3	Java 8 lamba's are fun	2015-07-26	Compared to C# and Scala, Java is a very verbose language.\r\n\r\nWith Java 8 lambda's we can finally trim down our code a bit.	Compared to C# and Scala, Java is a very verbose language.\r\n\r\nWith Java 8 lambda's we can finally trim down our code a bit.	1
@@ -143,6 +144,14 @@ ALTER TABLE ONLY blogpost
 
 ALTER TABLE ONLY bloguser
     ADD CONSTRAINT pk_bloguser PRIMARY KEY (id);
+
+
+--
+-- Name: fk_blogpost_author; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY blogpost
+    ADD CONSTRAINT fk_blogpost_author FOREIGN KEY (author_id) REFERENCES bloguser(id);
 
 
 --

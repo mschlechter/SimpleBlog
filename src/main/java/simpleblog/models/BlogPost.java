@@ -1,8 +1,6 @@
 package simpleblog.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,7 +16,6 @@ public class BlogPost {
     private Date created;
     private String content;
     private String summary;
-    private int author;
 
     @Transient
     private String contentHtml;
@@ -26,11 +23,15 @@ public class BlogPost {
     @Transient
     private String summaryHtml;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private BlogUser author;
+
+
     public String getFormattedDate()
     {
         if (created == null) return "unknown";
 
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return format.format(created);
     }
 
@@ -96,11 +97,11 @@ public class BlogPost {
         this.summaryHtml = summaryHtml;
     }
 
-    public int getAuthor() {
+    public BlogUser getAuthor() {
         return author;
     }
 
-    public void setAuthor(int author) {
+    public void setAuthor(BlogUser author) {
         this.author = author;
     }
 }
