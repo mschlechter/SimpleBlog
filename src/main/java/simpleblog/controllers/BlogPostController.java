@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import simpleblog.config.SimpleBlogConfig;
 import simpleblog.models.BlogPost;
-import simpleblog.models.BlogPostDao;
 import simpleblog.models.BlogUser;
 import simpleblog.services.BlogPostService;
 import simpleblog.services.BlogUserService;
@@ -19,7 +18,6 @@ import simpleblog.services.MarkdownProcessor;
 import simpleblog.viewmodels.BlogPostEditViewModel;
 import simpleblog.viewmodels.BlogPostViewModel;
 
-import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,9 +31,6 @@ public class BlogPostController
 {
     @Autowired
     private SimpleBlogConfig blogConfig;
-
-    @Autowired
-    private BlogPostDao blogPostDao;
 
     @Autowired
     private BlogPostService blogPostService;

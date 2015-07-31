@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import simpleblog.models.BlogUser;
-import simpleblog.models.BlogUserDao;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,11 +22,11 @@ import java.util.List;
 public class CustomUserDetailsServiceImpl implements UserDetailsService
 {
     @Autowired
-    BlogUserDao userDao;
+    BlogUserService blogUserService;
 
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 
-        BlogUser blogUser = userDao.getUserByName(login);
+        BlogUser blogUser = blogUserService.getUserByName(login);
 
         if (blogUser != null)
         {
