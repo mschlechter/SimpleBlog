@@ -52,6 +52,7 @@ public class SpringDataConfig {
 
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+        properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 
         sessionFactory.setHibernateProperties(properties);
 
