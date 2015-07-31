@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import simpleblog.models.BlogUser;
 
+import javax.transaction.Transactional;
+
 /**
  * Created by marc on 31/07/15.
  */
 @Service
+@Transactional
 public class BlogUserService {
 
     @Autowired
@@ -17,19 +20,10 @@ public class BlogUserService {
 
     public BlogUser getUserByName(String username)
     {
-        String hql = "from BlogUser u where u.username = :username";
-
-        Session session = null;
-
-        try {
-            session = sessionFactory.openSession();
-
-            BlogUser user = (BlogUser) session.createQuery(hql).setString("username", username).uniqueResult();
-            return user;
-        }
-        finally {
-            if (session != null) session.close();
-        }
+        return (BlogUser) sessionFactory.getCurrentSession()
+                .createQuery("from BlogUser u where u.username = :username")
+                .setString("username", username)
+                .uniqueResult();
     }
 
 }
