@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import simpleblog.config.SimpleBlogConfig;
 import simpleblog.models.BlogPost;
 import simpleblog.models.BlogPostDao;
+import simpleblog.services.BlogPostService;
 
 /**
  * Created by marc on 12/07/15.
@@ -22,6 +23,9 @@ public class BlogPostController
 
     @Autowired
     private BlogPostDao blogPostDao;
+
+    @Autowired
+    private BlogPostService blogPostService;
 
     @RequestMapping(value="/post/{id}", method = RequestMethod.GET)
     public ModelAndView getBlogPostById(@PathVariable("id") int id)

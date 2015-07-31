@@ -19,7 +19,7 @@
                     <h2>${blogPost.title}</h2>
                 </div>
                 <p>
-                    Posted by ${blogPost.author.friendlyName} on ${blogPost.formattedDate}
+                    Posted by ${blogPost.authorName} on ${blogPost.formattedDate}
                 </p>
                 <p>
                     ${blogPost.summaryHtml}
