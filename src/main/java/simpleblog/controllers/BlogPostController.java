@@ -11,6 +11,12 @@ import simpleblog.config.SimpleBlogConfig;
 import simpleblog.models.BlogPost;
 import simpleblog.models.BlogPostDao;
 import simpleblog.services.BlogPostService;
+import simpleblog.services.MarkdownProcessor;
+import simpleblog.viewmodels.BlogPostViewModel;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by marc on 12/07/15.
@@ -27,14 +33,60 @@ public class BlogPostController
     @Autowired
     private BlogPostService blogPostService;
 
+    @Autowired
+    private MarkdownProcessor mdProcessor;
+
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+    private BlogPostViewModel createBlogPostViewModel(BlogPost blogPost)
+    {
+        BlogPostViewModel blogPostViewModel = new BlogPostViewModel();
+        blogPostViewModel.setId(blogPost.getId());
+        blogPostViewModel.setTitle(blogPost.getTitle());
+        blogPostViewModel.setSummaryHtml(mdProcessor.getHtml(blogPost.getSummary()));
+        blogPostViewModel.setContentHtml(mdProcessor.getHtml(blogPost.getContent()));
+
+        if (blogPost.getCreated() == null)
+        {
+            blogPostViewModel.setFormattedDate("unknown");
+        }
+        else
+        {
+            blogPostViewModel.setFormattedDate(simpleDateFormat.format(blogPost.getCreated()));
+        }
+
+        blogPostViewModel.setAuthorName(blogPost.getAuthor().getFriendlyName());
+        return blogPostViewModel;
+    }
+
+    @RequestMapping(value="/", method = RequestMethod.GET)
+    public ModelAndView home()
+    {
+        List<BlogPost> blogPosts = blogPostService.getRecentPosts();
+        List<BlogPostViewModel> blogPostViewModels = new ArrayList<BlogPostViewModel>();
+
+        for (BlogPost blogPost : blogPosts)
+        {
+            BlogPostViewModel blogPostViewModel = createBlogPostViewModel(blogPost);
+            blogPostViewModels.add(blogPostViewModel);
+        }
+
+        ModelAndView mav = new ModelAndView("home");
+        mav.addObject("blogConfig", blogConfig);
+        mav.addObject("blogPosts", blogPostViewModels);
+
+        return mav;
+    }
+
     @RequestMapping(value="/post/{id}", method = RequestMethod.GET)
     public ModelAndView getBlogPostById(@PathVariable("id") int id)
     {
-        BlogPost blogPost = blogPostDao.getBlogPost(id);
+        BlogPost blogPost = blogPostService.getBlogPost(id);
+        BlogPostViewModel blogPostViewModel = createBlogPostViewModel(blogPost);
 
         ModelAndView mav = new ModelAndView("blogpost");
         mav.addObject("blogConfig", blogConfig);
-        mav.addObject("blogPost", blogPost);
+        mav.addObject("blogPost", blogPostViewModel);
 
         return mav;
     }

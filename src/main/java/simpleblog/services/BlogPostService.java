@@ -42,7 +42,6 @@ public class BlogPostService {
         try
         {
             session = sessionFactory.openSession();
-
             return (BlogPost) session.createQuery(hql).setInteger("id", id).uniqueResult();
         }
         finally {
