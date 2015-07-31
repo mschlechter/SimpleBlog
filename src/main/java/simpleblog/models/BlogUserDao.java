@@ -1,8 +1,8 @@
 package simpleblog.models;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,17 +12,23 @@ import org.springframework.stereotype.Repository;
 public class BlogUserDao
 {
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private SessionFactory sessionFactory;
 
     public BlogUser getUserByName(String username)
     {
-        String sql = "select * from bloguser where username = ?";
+        String hql = "from BlogUser u where u.username = :username";
 
-        BlogUser user = (BlogUser)jdbcTemplate.queryForObject(sql,
-                new Object[] { username },
-                new BeanPropertyRowMapper(BlogUser.class));
+        Session session = null;
 
-        return user;
+        try {
+            session = sessionFactory.openSession();
+
+            BlogUser user = (BlogUser) session.createQuery(hql).setString("username", username).uniqueResult();
+            return user;
+        }
+        finally {
+            if (session != null) session.close();
+        }
     }
 
 }

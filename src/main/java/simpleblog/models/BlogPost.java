@@ -2,6 +2,7 @@ package simpleblog.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -19,7 +20,10 @@ public class BlogPost {
     private String summary;
     private int author;
 
+    @Transient
     private String contentHtml;
+
+    @Transient
     private String summaryHtml;
 
     public String getFormattedDate()

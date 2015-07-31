@@ -1,5 +1,7 @@
 package simpleblog.models;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,21 +21,34 @@ public class BlogPostDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
+    private SessionFactory sessionFactory;
+
+    @Autowired
     private MarkdownProcessor mdProcessor;
 
     public List<BlogPost> getRecentPosts()
     {
-        String sql = "select * from blogpost order by created desc limit 5";
+        String hql = "from BlogPost p order by p.created desc";
 
-        List<BlogPost> blogPostList = jdbcTemplate.query(sql,
-                new BeanPropertyRowMapper(BlogPost.class));
+        Session session = null;
 
-        for (BlogPost blogPost : blogPostList)
+        try
         {
-            blogPost.setContentHtml(mdProcessor.getHtml(blogPost.getContent()));
-            blogPost.setSummaryHtml(mdProcessor.getHtml(blogPost.getSummary()));
+            session = sessionFactory.openSession();
+
+            List<BlogPost> blogPostList = session.createQuery(hql).setMaxResults(5).list();
+
+            for (BlogPost blogPost : blogPostList)
+            {
+                blogPost.setContentHtml(mdProcessor.getHtml(blogPost.getContent()));
+                blogPost.setSummaryHtml(mdProcessor.getHtml(blogPost.getSummary()));
+            }
+
+            return blogPostList;
         }
-        return blogPostList;
+        finally {
+            if (session != null) session.close();
+        }
     }
 
     public BlogPost getBlogPost(int id)
