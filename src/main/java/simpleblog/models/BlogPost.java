@@ -11,7 +11,10 @@ import java.util.Date;
 public class BlogPost {
 
     @Id
+    @SequenceGenerator(name="pk_sequence",sequenceName="seq_blogpost", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="pk_sequence")
     private int id;
+
     private String title;
     private Date created;
     private String content;
