@@ -12,19 +12,6 @@ public class BlogPostEditViewModel {
     private String summary;
     private String content;
 
-    public BlogPostEditViewModel()
-    {
-        id = -1;
-    }
-
-    public BlogPostEditViewModel(BlogPost blogPost)
-    {
-        this.id = blogPost.getId();
-        this.title = blogPost.getTitle();
-        this.summary = blogPost.getSummary();
-        this.content = blogPost.getContent();
-    }
-
     public int getId() {
         return id;
     }

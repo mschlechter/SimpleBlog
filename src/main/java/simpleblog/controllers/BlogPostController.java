@@ -1,6 +1,7 @@
 package simpleblog.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,12 +11,18 @@ import org.springframework.web.servlet.ModelAndView;
 import simpleblog.config.SimpleBlogConfig;
 import simpleblog.models.BlogPost;
 import simpleblog.models.BlogPostDao;
+import simpleblog.models.BlogUser;
 import simpleblog.services.BlogPostService;
+import simpleblog.services.BlogUserService;
+import simpleblog.services.CustomUserDetails;
 import simpleblog.services.MarkdownProcessor;
+import simpleblog.viewmodels.BlogPostEditViewModel;
 import simpleblog.viewmodels.BlogPostViewModel;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,6 +39,9 @@ public class BlogPostController
 
     @Autowired
     private BlogPostService blogPostService;
+
+    @Autowired
+    private BlogUserService blogUserService;
 
     @Autowired
     private MarkdownProcessor mdProcessor;
@@ -57,6 +67,16 @@ public class BlogPostController
 
         blogPostViewModel.setAuthorName(blogPost.getAuthor().getFriendlyName());
         return blogPostViewModel;
+    }
+
+    private BlogPostEditViewModel createBlogPostEditViewModel(BlogPost blogPost)
+    {
+        BlogPostEditViewModel blogPostEditViewModel = new BlogPostEditViewModel();
+        blogPostEditViewModel.setId(blogPost.getId());
+        blogPostEditViewModel.setTitle(blogPost.getTitle());
+        blogPostEditViewModel.setSummary(blogPost.getSummary());
+        blogPostEditViewModel.setContent(blogPost.getContent());
+        return blogPostEditViewModel;
     }
 
     @RequestMapping(value="/", method = RequestMethod.GET)
@@ -94,25 +114,53 @@ public class BlogPostController
     @RequestMapping(value="/post/edit/{id}", method = RequestMethod.GET)
     public ModelAndView getBlogPostByIdEdit(@PathVariable("id") int id)
     {
-        BlogPost blogPost;
+        BlogPostEditViewModel blogPostEditViewModel;
 
         if (id > 0) {
-            blogPost = blogPostDao.getBlogPost(id);
+            BlogPost blogPost = blogPostService.getBlogPost(id);
+            blogPostEditViewModel = createBlogPostEditViewModel(blogPost);
         } else {
-            blogPost = new BlogPost();
+            blogPostEditViewModel = new BlogPostEditViewModel();
         }
 
         ModelAndView mav = new ModelAndView("blogpostedit");
         mav.addObject("blogConfig", blogConfig);
-        mav.addObject("blogPost", blogPost);
+        mav.addObject("blogPost", blogPostEditViewModel);
 
         return mav;
     }
 
     @RequestMapping(value="/post/save", method = RequestMethod.POST)
-    public ModelAndView saveBlogPost(@ModelAttribute("blogPost") BlogPost blogPost)
+    public ModelAndView saveBlogPost(@ModelAttribute("blogPost") BlogPostEditViewModel blogPostEditViewModel)
     {
-        blogPostDao.saveBlogPost(blogPost);
+        CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        BlogUser blogUser = blogUserService.getUserByName(customUserDetails.getUsername());
+
+        if (blogPostEditViewModel.getId() == 0)
+        {
+            // new
+            BlogPost blogPost = new BlogPost();
+            blogPost.setTitle(blogPostEditViewModel.getTitle());
+            blogPost.setSummary(blogPostEditViewModel.getSummary());
+            blogPost.setContent(blogPostEditViewModel.getContent());
+            blogPost.setCreated(new Date());
+            blogPost.setAuthor(blogUser);
+
+            blogPostService.saveBlogPost(blogPost);
+        }
+        else
+        {
+            // update
+            BlogPost blogPost = blogPostService.getBlogPost(blogPostEditViewModel.getId());
+            blogPost.setTitle(blogPostEditViewModel.getTitle());
+            blogPost.setSummary(blogPostEditViewModel.getSummary());
+            blogPost.setContent(blogPostEditViewModel.getContent());
+            blogPost.setCreated(new Date());
+            blogPost.setAuthor(blogUser);
+
+            blogPostService.updateBlogPost(blogPost);
+        }
+
 
         return new ModelAndView("redirect:/");
     }

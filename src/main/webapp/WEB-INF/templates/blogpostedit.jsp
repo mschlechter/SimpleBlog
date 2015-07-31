@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="page-header">
-    <h2>Edit: ${blogPost.title} <small class="hidden-xs">${blogPost.formattedDate}</small></h2>
+    <h2>Edit: ${blogPost.title}</h2>
   </div>
 
   <spring:url value="/post/save" var="saveActionUrl" />

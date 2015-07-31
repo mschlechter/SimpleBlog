@@ -49,4 +49,33 @@ public class BlogPostService {
         }
     }
 
+    public void saveBlogPost(BlogPost blogPost)
+    {
+        Session session = null;
+
+        try
+        {
+            session = sessionFactory.openSession();
+            session.save(blogPost);
+            session.flush();
+        }
+        finally {
+            if (session != null) session.close();
+        }
+    }
+
+    public void updateBlogPost(BlogPost blogPost)
+    {
+        Session session = null;
+
+        try
+        {
+            session = sessionFactory.openSession();
+            session.update(blogPost);
+            session.flush();
+        }
+        finally {
+            if (session != null) session.close();
+        }
+    }
 }
