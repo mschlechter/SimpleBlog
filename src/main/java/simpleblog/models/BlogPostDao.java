@@ -35,8 +35,6 @@ public class BlogPostDao {
             blogPost.setSummaryHtml(mdProcessor.getHtml(blogPost.getSummary()));
         }
 
-        // test ssh
-
         return blogPostList;
     }
 
