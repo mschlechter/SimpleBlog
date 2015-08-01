@@ -22,7 +22,7 @@ public class BlogPostService {
     public List<BlogPost> getRecentPosts()
     {
         return sessionFactory.getCurrentSession()
-                .createQuery("from BlogPost p order by p.created desc")
+                .createQuery("select p from BlogPost as p left join fetch p.author order by p.created desc")
                 .setMaxResults(5)
                 .list();
     }

@@ -26,7 +26,7 @@ public class BlogPost {
     @Transient
     private String summaryHtml;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private BlogUser author;
 
 
