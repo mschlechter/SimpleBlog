@@ -6,6 +6,25 @@
   </div>
 </div>
 
+<spring:url value="/archive" var="searchActionUrl" />
+
+<div class="container">
+
+<form:form modelAttribute="searchModel" action="${searchActionUrl}" method="post">
+
+  <div class="form-group">
+    <label for="search">Search:</label>
+    <form:input path="searchText" type="text" class="form-control" id="search" placeholder="search" />
+  </div>
+
+  <button type="submit" class="btn btn-default">Search</button>
+
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+</form:form>
+
+  </div>
+
 <c:choose>
   <c:when test="${not empty blogPosts}">
 

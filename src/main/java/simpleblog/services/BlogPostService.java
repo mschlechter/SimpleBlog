@@ -35,6 +35,15 @@ public class BlogPostService {
                 .uniqueResult();
     }
 
+    public List<BlogPost> searchBlogPosts(String searchText)
+    {
+        return sessionFactory.getCurrentSession()
+                .createQuery("from BlogPost p left join fetch p.author where p.title like :search order by p.created desc")
+                .setString("search", "%" + searchText + "%")
+                .setMaxResults(5)
+                .list();
+    }
+
     public void saveBlogPost(BlogPost blogPost)
     {
         Session session = sessionFactory.getCurrentSession();
