@@ -21,3 +21,9 @@ Todo's:
 2. Archive view with search functionality.
 3. Much more :-)
 
+You can run this project using Gradle with the gretty plugin.
+
+The command for this is:
+
+gradle appRun
+
