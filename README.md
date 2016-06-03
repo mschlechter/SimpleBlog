@@ -10,11 +10,11 @@ I have a day job as a Microsoft .NET developer and it's fun to do something
 different once in a while.
 
 My development environment consists of:
-- Ubuntu Linux LTS
+- Ubuntu Linux 16.04 LTS
 - Java 8 JDK
 - Gradle
 - PostgreSQL
-- NetBeans
+- NetBeans (for some reason I never get along with Eclipse)
 
 ![screenshot image](ubuntu.png "Screenshot")
 
@@ -36,15 +36,15 @@ Todo:
 
 ## Configuration / setup
 
-Make sure you have a JDK installed, and Gradle. You will also need PostgreSQL
+Make sure you have a JDK and Gradle installed. You will also need PostgreSQL
 for the database. And of course git.
 
-### 1. Clone the repository with git to a local folder.
+### 1. Clone the repository with git to a local folder
 
     cd ~/Projects
     git clone https://github.com/mschlechter/SimpleBlog
 
-### 2. Create the "simpleblog" database in PostgreSQL.
+### 2. Create the "simpleblog" database in PostgreSQL
 
 On a clean PostgreSQL installation first set the password:
 
@@ -63,7 +63,11 @@ And then you can quit:
 
     \q
 
-### 3. Compile the project with Gradle and run it.
+To create all the tables and records you can run:
+
+    sudo -u postgres psql -d simpleblog < CreateDatabase.sql
+
+### 3. Compile the project with Gradle and run it
 
 Do a clean build:
 
