@@ -41,15 +41,15 @@ for the database. And of course git.
 
 ### 1. Clone the repository with git to a local folder.
 
-cd ~/Projects
-git clone https://github.com/mschlechter/SimpleBlog
+    cd ~/Projects
+    git clone https://github.com/mschlechter/SimpleBlog
 
 ### 2. Create the "simpleblog" database in PostgreSQL.
 
 On a clean PostgreSQL installation first set the password:
 
-sudo -u postgres psql
-\password
+    sudo -u postgres psql
+    \password
 
 You can choose to set "p0stgr3s" as the password, or you can choose something
 yourself. But then you need to change the password in the simpleblog.properties
@@ -57,23 +57,23 @@ file of the project (located in src/main/resources).
 
 You should also create the database:
 
-create database simpleblog;
+    create database simpleblog;
 
 And then you can quit:
 
-\q
+    \q
 
 ### 3. Compile the project with Gradle and run it.
 
 Do a clean build:
 
-gradle clean build
+    gradle clean build
 
 You can run this project using Gradle with the gretty plugin.
 
 The command for this is:
 
-gradle appRun
+    gradle appRun
 
 By now you should be a able to browse to http://localhost:8080/SimpleBlog
 and see this project running.
