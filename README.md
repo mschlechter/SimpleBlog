@@ -75,6 +75,6 @@ The command for this is:
 
     gradle appRun
 
-By now you should be a able to browse to http://localhost:8080/SimpleBlog
+By now you should be able to browse to <http://localhost:8080/SimpleBlog>
 and see this project running.
 
