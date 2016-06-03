@@ -81,4 +81,3 @@ The command for this is:
 
 By now you should be able to browse to <http://localhost:8080/SimpleBlog>
 and see this project running.
-
